@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_news/config/Theme/theme.dart';
+import 'package:flutter_application_news/presentation/screens/detail_page.dart';
 import 'package:provider/provider.dart';
 
 import 'presentation/providers/news_provider.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/home',
         routes: {
           '/home': (context) => const HomePage(),
+          '/detail' : (context) => const DetailPage(),
         },
         theme: ThemeApp().theme(),
       ),

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../data/models/news_model.dart';
 import 'package:http/http.dart' as http;
@@ -21,13 +22,23 @@ class NewsProvider extends ChangeNotifier {
     getNews();
   }
 
+// with Dio
+  final dio = Dio();
+
   getNews() async {
-    final response = await http.get(Uri.parse(url));
-
-    final resp = newsModelFromJson(response.body);
-
-    newsList.addAll(resp.results);
+    final response = await dio.get(url);
+    final res = NewsModel.fromJson(response.data);
+    newsList.addAll(res.results);
 
     notifyListeners();
   }
+
+// with http
+
+  // getNews() async {
+  //   final response = await http.get(Uri.parse(url));
+  //   final resp = newsModelFromJson(response.body);
+  //   newsList.addAll(resp.results)
+  //   notifyListeners();
+  // }
 }

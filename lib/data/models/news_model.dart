@@ -2,7 +2,9 @@
 //
 //     final newsModel = newsModelFromJson(jsonString);
 
+
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 NewsModel newsModelFromJson(String str) => NewsModel.fromJson(json.decode(str));
 
@@ -45,7 +47,7 @@ class Result {
     dynamic videoUrl;
     String description;
     String content;
-    DateTime pubDate;
+    String pubDate;
     String imageUrl;
     String sourceId;
     int sourcePriority;
@@ -82,7 +84,8 @@ class Result {
         videoUrl: json["video_url"],
         description: json["description"] as String? ?? "Descripcion no Disponible",
         content: json["content"],
-        pubDate: DateTime.parse(json["pubDate"]),
+        // pubDate: DateTime.parse(json["pubDate"]),
+        pubDate: DateFormat.yMMMd().format(DateTime.parse(json['pubDate'])),
         imageUrl: json["image_url"] ?? "https://dici.uta.cl/wp-content/uploads/2019/11/error404-300x192.png",
 
         // imageUrl: json["image_url"] ?? "http://dici.uta.cl/wp-content/uploads/2019/11/error404-300x192.png",
@@ -109,7 +112,7 @@ class Result {
         "video_url": videoUrl,
         "description": description,
         "content": content,
-        "pubDate": pubDate.toIso8601String(),
+        "pubDate": pubDate,
         "image_url": imageUrl,
         "source_id": sourceId,
         "source_priority": sourcePriority,
